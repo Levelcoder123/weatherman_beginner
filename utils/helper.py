@@ -1,7 +1,7 @@
-from utils.reader import read_weather_object, WeatherDataReader
+from utils.reader import weather_object
 from datetime import datetime
 
-all_data = read_weather_object.path_finder()
+all_data = weather_object.path_finder()
 all_years = set()
 
 

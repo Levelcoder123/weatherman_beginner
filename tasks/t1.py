@@ -1,10 +1,10 @@
-from utils.reader import read_weather_object
+from utils.reader import weather_object
 from utils.helper import get_validated_input, get_converted_date
 from utils.IndexMapper import IndexMapper
 
 
 class MaxTempGetter:
-    all_years_data = read_weather_object.path_finder()
+    all_years_data = weather_object.path_finder()
 
     final_maximum = 0
     may_be_maximum = 0

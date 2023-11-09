@@ -1,10 +1,10 @@
-from utils.reader import read_weather_object, WeatherDataReader
+from utils.reader import weather_object
 from utils.helper import get_validated_input, get_converted_date
 from utils.IndexMapper import IndexMapper
 
 
 class RainyMonths:
-    all_years_data = read_weather_object.path_finder()
+    all_years_data = weather_object.path_finder()
 
     set_of_rainy_months = set()
 

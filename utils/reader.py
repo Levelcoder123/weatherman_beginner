@@ -1,5 +1,4 @@
 import os
-from datetime import datetime
 
 
 class WeatherDataReader:
@@ -23,4 +22,4 @@ class WeatherDataReader:
 
 
 folder_path = "../weather_files"
-read_weather_object = WeatherDataReader(folder_path)
+weather_object = WeatherDataReader(folder_path)

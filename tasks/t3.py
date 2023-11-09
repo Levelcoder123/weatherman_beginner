@@ -1,10 +1,10 @@
-from utils.reader import read_weather_object, WeatherDataReader
+from utils.reader import weather_object
 from utils.helper import get_validated_input, get_converted_date
 from utils.IndexMapper import IndexMapper
 
 
 class DatesWithDiff:
-    year_data = read_weather_object.path_finder()
+    year_data = weather_object.path_finder()
 
     dates_with_diff_of_7 = []
 
