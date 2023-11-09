@@ -11,11 +11,11 @@ class UniqueEvents:
     @classmethod
     def get_unique_events(cls, user_input):
         for index in range(len(UniqueEvents.all_years_data)):
-            date = UniqueEvents.all_years_data[index][IndexMapper.DATE_STR]
-            year = get_converted_date(date).year
+            date_str = UniqueEvents.all_years_data[index][IndexMapper.DATE_STR]
+            year_str = get_converted_date(date_str).year
             event = UniqueEvents.all_years_data[index][IndexMapper.EVENTS]
 
-            if year == user_input:
+            if year_str == user_input:
                 if event != '' and event != 'Rain':
                     UniqueEvents.set_of_unique_events.add(event)
 

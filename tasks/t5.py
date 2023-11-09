@@ -11,12 +11,12 @@ class RainyMonths:
     @classmethod
     def get_rainy_months(cls, user_input):
         for index in range(len(RainyMonths.all_years_data)):
-            date = RainyMonths.all_years_data[index][IndexMapper.DATE_STR]
-            year = get_converted_date(date).year
-            month = get_converted_date(date).month
+            date_str = RainyMonths.all_years_data[index][IndexMapper.DATE_STR]
+            year_str = get_converted_date(date_str).year
+            month = get_converted_date(date_str).month
             event = RainyMonths.all_years_data[index][IndexMapper.EVENTS]
 
-            if year == user_input:
+            if year_str == user_input:
                 if event == 'Rain':
                     RainyMonths.set_of_rainy_months.add(month)
 

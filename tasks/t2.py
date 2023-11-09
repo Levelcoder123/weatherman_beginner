@@ -16,14 +16,14 @@ class MinTempGetter:
             year_str = get_converted_date(date_str).year
             MinTempGetter.may_be_minimum = MinTempGetter.all_years_data[index][IndexMapper.MIN_TEMP]
 
-            # Change min and max number into int.
+            # # Change min and max number into int.
             if MinTempGetter.may_be_minimum:
                 MinTempGetter.may_be_minimum = int(MinTempGetter.may_be_minimum)
 
-                # Check max and min temp if input match.
-                if year_str == user_input:
-                    if MinTempGetter.may_be_minimum < MinTempGetter.final_minimum:
-                        MinTempGetter.final_minimum = MinTempGetter.may_be_minimum
+            # Check max and min temp if input match.
+            if year_str == user_input:
+                if MinTempGetter.may_be_minimum < MinTempGetter.final_minimum:
+                    MinTempGetter.final_minimum = MinTempGetter.may_be_minimum
 
         return MinTempGetter.final_minimum
 
