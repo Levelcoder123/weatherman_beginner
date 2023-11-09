@@ -1,4 +1,4 @@
 # created by virtualenv automatically
-/weather_files
-/bin
-/lib
+weather_files/
+**/bin
+**/lib
