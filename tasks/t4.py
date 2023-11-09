@@ -1,25 +1,32 @@
-from python_projects.weatherman_beginner.utils.path_extractor import read_obj, ReadWeatherData
-
-_user_input = int(input("what year's data you want to see?: (e.g => 2004)"))
-
-
-class RainyMonths(ReadWeatherData):
-    year_data = read_obj.path_extract()
-
-    rainy_months = set()
-
-    @staticmethod
-    def get_rainy_months():
-        for index in range(len(RainyMonths.year_data)):
-            date = RainyMonths.year_data[index][0]
-            year = RainyMonths.get_date_obj(date).year
-            month = RainyMonths.get_date_obj(date).month
-            event = RainyMonths.year_data[index][-2]
-
-            if year == _user_input:
-                if event == 'Rain':
-                    RainyMonths.rainy_months.add(month)
-        return RainyMonths.rainy_months
+from utils.reader import read_weather_object, WeatherDataReader
+from utils.helper import get_validated_input, get_converted_date
+from utils.IndexMapper import IndexMapper
 
 
-print(f"Rainy months in {_user_input} are : {RainyMonths.get_rainy_months()}")
+class UniqueEvents:
+    all_years_data = read_weather_object.path_finder()
+
+    set_of_unique_events = set()
+
+    @classmethod
+    def get_unique_events(cls, user_input):
+        for index in range(len(UniqueEvents.all_years_data)):
+            date = UniqueEvents.all_years_data[index][IndexMapper.DATE_STR]
+            year = get_converted_date(date).year
+            event = UniqueEvents.all_years_data[index][IndexMapper.EVENTS]
+
+            if year == user_input:
+                if event != '' and event != 'Rain':
+                    UniqueEvents.set_of_unique_events.add(event)
+
+        return UniqueEvents.set_of_unique_events
+
+
+input_string = input("what year's data you want to see?: (e.g => 2004)")
+valid_input = get_validated_input(input_string)
+
+if valid_input is False:
+    print("This isn't a valid input !!!. Please type a valid input(e.g => 2004 to 2016)")
+else:
+    return_value = UniqueEvents.get_unique_events(valid_input)
+    print(f"Unique events in {input_string} are : {return_value}")
