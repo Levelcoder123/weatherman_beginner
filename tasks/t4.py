@@ -6,7 +6,7 @@ from utils.IndexMapper import IndexMapper
 class UniqueEvents:
     all_years_data = weather_object.path_finder()
 
-    set_of_unique_events = set()
+    all_unique_events = set()
 
     @classmethod
     def get_unique_events(cls, user_input):
@@ -17,9 +17,9 @@ class UniqueEvents:
 
             if year_str == user_input:
                 if event != '' and event != 'Rain':
-                    UniqueEvents.set_of_unique_events.add(event)
+                    UniqueEvents.all_unique_events.add(event)
 
-        return UniqueEvents.set_of_unique_events
+        return UniqueEvents.all_unique_events
 
 
 input_string = input("what year's data you want to see?: (e.g => 2004)")

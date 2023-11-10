@@ -5,22 +5,21 @@ from utils.IndexMapper import IndexMapper
 
 class RainyMonths:
     all_years_data = weather_object.path_finder()
-
-    set_of_rainy_months = set()
+    all_rainy_months = set()
 
     @classmethod
     def get_rainy_months(cls, user_input):
         for index in range(len(RainyMonths.all_years_data)):
             date_str = RainyMonths.all_years_data[index][IndexMapper.DATE_STR]
             year_str = get_converted_date(date_str).year
-            month = get_converted_date(date_str).month
+            month_str = get_converted_date(date_str).month
             event = RainyMonths.all_years_data[index][IndexMapper.EVENTS]
 
             if year_str == user_input:
                 if event == 'Rain':
-                    RainyMonths.set_of_rainy_months.add(month)
+                    RainyMonths.all_rainy_months.add(month_str)
 
-        return RainyMonths.set_of_rainy_months
+        return RainyMonths.all_rainy_months
 
 
 input_string = input("what year's data you want to see?: (e.g => 2004)")

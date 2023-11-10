@@ -14,16 +14,16 @@ class DatesWithDiff:
             date_str = DatesWithDiff.year_data[index][IndexMapper.DATE_STR]
             year_str = get_converted_date(date_str).year
 
-            DatesWithDiff.max_num = DatesWithDiff.year_data[index][IndexMapper.MAX_TEMP]
-            DatesWithDiff.min_num = DatesWithDiff.year_data[index][IndexMapper.MIN_TEMP]
+            DatesWithDiff.maximum = DatesWithDiff.year_data[index][IndexMapper.MAX_TEMP]
+            DatesWithDiff.minimum = DatesWithDiff.year_data[index][IndexMapper.MIN_TEMP]
 
-            if DatesWithDiff.max_num and DatesWithDiff.min_num:  # Change str into int.
-                DatesWithDiff.max_num = int(DatesWithDiff.max_num)
-                DatesWithDiff.min_num = int(DatesWithDiff.min_num)
+            if DatesWithDiff.maximum and DatesWithDiff.minimum:  # Change str into int.
+                DatesWithDiff.maximum = int(DatesWithDiff.maximum)
+                DatesWithDiff.minimum = int(DatesWithDiff.minimum)
 
                 if year_str == user_input:
                     # Check max and min temp.
-                    if DatesWithDiff.max_num - DatesWithDiff.min_num == 7:
+                    if DatesWithDiff.maximum - DatesWithDiff.minimum == 7:
                         DatesWithDiff.dates_with_diff_of_7.append(date_str)
 
         return DatesWithDiff.dates_with_diff_of_7
