@@ -1,31 +1,26 @@
-from utils.reader import weather_object
-from utils.helper import get_validated_input, get_converted_date
-from utils.IndexMapper import IndexMapper
+from utils.reader import all_years_data
+from utils.helpers import get_validated_input, get_converted_date
+from constants import IndexMapper
 
 
-class MinTempGetter:
-    all_years_data = weather_object.path_finder()
-
+def minimum_temp_finder(user_input):
     final_minimum = 0
-    may_be_minimum = 0
 
-    @classmethod
-    def minimum_temp_finder(cls, user_input):
-        for index in range(len(MinTempGetter.all_years_data)):
-            date_str = MinTempGetter.all_years_data[index][IndexMapper.DATE_STR]
-            year_str = get_converted_date(date_str).year
-            MinTempGetter.may_be_minimum = MinTempGetter.all_years_data[index][IndexMapper.MIN_TEMP]
+    for index in range(len(all_years_data)):
+        date_str = all_years_data[index][IndexMapper.DATE_STR]
+        year_str = int(get_converted_date(date_str).year)
+        may_be_minimum = all_years_data[index][IndexMapper.MIN_TEMP]
 
-            # # Change min and max number into int.
-            if MinTempGetter.may_be_minimum:
-                MinTempGetter.may_be_minimum = int(MinTempGetter.may_be_minimum)
+        # Change str into int.
+        if may_be_minimum:
+            may_be_minimum = int(may_be_minimum)
 
-            # Check max and min temp if input match.
-            if year_str == user_input:
-                if MinTempGetter.may_be_minimum < MinTempGetter.final_minimum:
-                    MinTempGetter.final_minimum = MinTempGetter.may_be_minimum
+        # Check minimum temp if input match.
+        if year_str == user_input:
+            if may_be_minimum < final_minimum:
+                final_minimum = may_be_minimum
 
-        return MinTempGetter.final_minimum
+    return final_minimum
 
 
 input_string = input("what year's data you want to see?: (e.g => 2004)")
@@ -34,5 +29,6 @@ valid_input = get_validated_input(input_string)
 if valid_input is False:
     print("This isn't a valid input !!!. Please type a valid input(e.g => 2004 to 2016)")
 else:
-    return_value = MinTempGetter.minimum_temp_finder(valid_input)
+    return_value = minimum_temp_finder(valid_input)
     print(f"Minimum temp of {input_string} is {return_value}")
+    

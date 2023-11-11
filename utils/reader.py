@@ -1,24 +1,27 @@
 import os
 
 
-class WeatherDataReader:
-    all_years_data = []
+def path_extractor(path_to_folder):
+    all_items = os.listdir(path_to_folder)
+    all_items_path = [os.path.join(path_to_folder, item) for item in all_items]
 
-    folder_path = "../weather_files"
-    all_items = os.listdir(folder_path)
-    all_items_path = [os.path.join(folder_path, item) for item in all_items]
-
-    # iterate through the paths and extract all data.
-    @classmethod
-    def path_finder(cls):
-        for path in WeatherDataReader.all_items_path:
-            with open(path, mode='r') as file:
-                file_read = file.readlines()
-                for line in file_read[1:]:
-                    day_data = line.strip('\n').split(',')
-                    WeatherDataReader.all_years_data.append(day_data)
-
-        return WeatherDataReader.all_years_data
+    return all_items_path
 
 
-weather_object = WeatherDataReader.path_finder()
+# iterate through the paths and extract all data.
+def gather_all_data(path_to_folder):
+    all_data = []
+
+    for path in path_extractor(path_to_folder):
+        with open(path, mode='r') as file:
+            file_read = file.readlines()
+            for line in file_read[1:]:
+                day_data = line.strip('\n').split(',')
+                all_data.append(day_data)
+
+    return all_data
+
+
+folder_path = '../weather_files'
+all_years_data = gather_all_data(folder_path)
+
