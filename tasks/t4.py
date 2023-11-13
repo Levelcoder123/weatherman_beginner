@@ -3,16 +3,16 @@ from utils.helpers import get_validated_input, get_converted_date
 from constants import IndexMapper
 
 
-def get_unique_events(user_input):
+def get_unique_events(year_from_user):
     all_unique_events = set()
 
-    for index in range(len(all_years_data)):
-        date_str = all_years_data[index][IndexMapper.DATE_STR]
-        year_str = get_converted_date(date_str).year
-        event = all_years_data[index][IndexMapper.EVENTS]
+    for day_data in all_years_data:
+        date_str = day_data[IndexMapper.DATE_STR]
+        year_from_data = get_converted_date(date_str).year
+        event = day_data[IndexMapper.EVENTS]
 
-        if year_str == user_input:
-            if event != '' and event != 'Rain':
+        if year_from_data == year_from_user:
+            if event != '':
                 all_unique_events.add(event)
 
     return all_unique_events
@@ -26,4 +26,3 @@ if valid_input is False:
 else:
     return_value = get_unique_events(valid_input)
     print(f"Unique events in {input_string} are : {return_value}")
-    

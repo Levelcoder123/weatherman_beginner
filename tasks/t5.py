@@ -3,16 +3,16 @@ from utils.helpers import get_validated_input, get_converted_date
 from constants import IndexMapper
 
 
-def get_rainy_months(user_input):
+def get_rainy_months(year_from_user):
     all_rainy_months = set()
 
-    for index in range(len(all_years_data)):
-        date_str = all_years_data[index][IndexMapper.DATE_STR]
-        year_str = get_converted_date(date_str).year
+    for day_data in all_years_data:
+        date_str = day_data[IndexMapper.DATE_STR]
+        year_from_data = get_converted_date(date_str).year
         month_str = get_converted_date(date_str).month
-        event = all_years_data[index][IndexMapper.EVENTS]
+        event = day_data[IndexMapper.EVENTS]
 
-        if year_str == user_input:
+        if year_from_data == year_from_user:
             if event == 'Rain':
                 all_rainy_months.add(month_str)
 
@@ -27,4 +27,3 @@ if valid_input is False:
 else:
     return_value = get_rainy_months(valid_input)
     print(f"Rainy months in {input_string} are : {return_value}")
-    

@@ -1,24 +1,14 @@
-from utils.reader import all_years_data
-from utils.helpers import get_validated_input, get_converted_date
+from utils.helpers import get_validated_input, get_data_by_year
 from constants import IndexMapper
 
 
-def maximum_temp_finder(user_input):
-    final_maximum = 0
+def get_max_temperature_by_year(year_from_user):
+    final_maximum = -1
+    maximum_list = get_data_by_year(year_from_user)[IndexMapper.MAX_TEMP]
 
-    for index in range(len(all_years_data)):
-        date_str = all_years_data[index][IndexMapper.DATE_STR]
-        year_from_data = int(get_converted_date(date_str).year)
-        may_be_maximum = all_years_data[index][IndexMapper.MAX_TEMP]
-
-        # Change str into int.
-        if may_be_maximum:
-            may_be_maximum = int(may_be_maximum)
-
-            # Check maximum temp if input match.
-            if year_from_data == user_input:
-                if may_be_maximum > final_maximum:
-                    final_maximum = may_be_maximum
+    for number in maximum_list:
+        if number > final_maximum:
+            final_maximum = number
 
     return final_maximum
 
@@ -29,6 +19,5 @@ valid_input = get_validated_input(input_string)
 if valid_input is False:
     print("This isn't a valid input !!!. Please type a valid input(e.g => 2004 to 2016)")
 else:
-    return_value = maximum_temp_finder(valid_input)
-    print(f"Maximum temp of {input_string} is {return_value}")
-    
+    maximum_number = get_max_temperature_by_year(valid_input)
+    print(f"Maximum temp of {valid_input} is {maximum_number}")

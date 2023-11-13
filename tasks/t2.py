@@ -1,24 +1,14 @@
-from utils.reader import all_years_data
-from utils.helpers import get_validated_input, get_converted_date
+from utils.helpers import get_validated_input, get_data_by_year
 from constants import IndexMapper
 
 
-def minimum_temp_finder(user_input):
+def get_min_temperature_by_year(year_from_user):
     final_minimum = 0
+    minimum_list = get_data_by_year(year_from_user)[IndexMapper.MIN_TEMP]
 
-    for index in range(len(all_years_data)):
-        date_str = all_years_data[index][IndexMapper.DATE_STR]
-        year_str = int(get_converted_date(date_str).year)
-        may_be_minimum = all_years_data[index][IndexMapper.MIN_TEMP]
-
-        # Change str into int.
-        if may_be_minimum:
-            may_be_minimum = int(may_be_minimum)
-
-        # Check minimum temp if input match.
-        if year_str == user_input:
-            if may_be_minimum < final_minimum:
-                final_minimum = may_be_minimum
+    for number in minimum_list:
+        if number < final_minimum:
+            final_minimum = number
 
     return final_minimum
 
@@ -29,6 +19,5 @@ valid_input = get_validated_input(input_string)
 if valid_input is False:
     print("This isn't a valid input !!!. Please type a valid input(e.g => 2004 to 2016)")
 else:
-    return_value = minimum_temp_finder(valid_input)
-    print(f"Minimum temp of {input_string} is {return_value}")
-    
+    minimum_number = get_min_temperature_by_year(valid_input)
+    print(f"Minimum temp of {input_string} is {minimum_number}")
