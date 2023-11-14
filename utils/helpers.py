@@ -29,7 +29,6 @@ def get_validated_input(user_input):
 
 # to get all data of a year and return
 def get_data_by_year(year_from_user):
-    date_list = []
     maximum_list = set()
     minimum_list = set()
 
@@ -43,4 +42,4 @@ def get_data_by_year(year_from_user):
             if maximum and minimum:
                 maximum_list.add(int(maximum))
                 minimum_list.add(int(minimum))
-    return date_list, maximum_list, [], minimum_list
+    return [], maximum_list, [], minimum_list
