@@ -28,7 +28,7 @@ def get_validated_input(user_input):
 
 
 # to get all data of a year and return
-def get_data_by_year(year_from_user):
+def get_data_by_year(year_from_user=None):
     date_list = []
     maximum_list = set()
     minimum_list = set()
