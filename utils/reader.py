@@ -24,4 +24,3 @@ def gather_all_data(path_to_folder):
 
 folder_path = '../weather_files'
 all_years_data = gather_all_data(folder_path)
-

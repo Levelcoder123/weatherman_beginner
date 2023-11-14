@@ -1,21 +1,20 @@
-from utils.helpers import get_data_by_year
+from utils.reader import all_years_data
 from constants import IndexMapper
 
 
 def get_diff_dates():
     dates_with_diff_of_7 = []
 
-    date_str = get_data_by_year()[IndexMapper.DATE_STR]
-    maximum_num_list = get_data_by_year()[IndexMapper.MAX_TEMP]
-    minimum_num_list = get_data_by_year()[IndexMapper.MIN_TEMP]
+    for day_data in all_years_data:
+        date_str = day_data[IndexMapper.DATE_STR]
+        maximum_temp = day_data[IndexMapper.MAX_TEMP]
+        minimum_temp = day_data[IndexMapper.MIN_TEMP]
 
-    # for max_num in maximum_num_list:
-    #     for min_num in minimum_num_list:
-    #         if max_num - min_num == 7:
-    #             dates_with_diff_of_7.append(date_str)
+        if maximum_temp and minimum_temp:
+            if int(maximum_temp) - int(minimum_temp) == 7:
+                dates_with_diff_of_7.append(date_str)
 
-    # return dates_with_diff_of_7
-    return date_str
+    return dates_with_diff_of_7
 
 
 dates_with_diff = get_diff_dates()
