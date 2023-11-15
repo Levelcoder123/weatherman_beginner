@@ -1,14 +1,12 @@
 from utils.reader import get_all_data
-from constants import FOLDER_PATH
+from constants import FOLDER_PATH, IndexMapper
 
 
 def get_unique_events():
-    all_unique_events = set([
-        day_data[-2]
+    return set([
+        day_data[IndexMapper.EVENTS]
         for day_data in get_all_data(FOLDER_PATH)
-        if day_data[-2]])
-
-    return all_unique_events
+        if day_data[IndexMapper.EVENTS]])
 
 
 print(f"Unique events are : {get_unique_events()}")

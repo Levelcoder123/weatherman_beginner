@@ -17,8 +17,8 @@ def get_validated_input(user_input):
 
     for index in range(len(get_all_data(FOLDER_PATH))):
         date_str = get_all_data(FOLDER_PATH)[index][IndexMapper.DATE_STR]
-        year_str = get_converted_date(date_str).year
-        all_years.add(year_str)
+        year_value = get_converted_date(date_str).year
+        all_years.add(year_value)
 
     # checking invalid input.
     if user_input.isdigit() and int(user_input) in all_years:
@@ -29,14 +29,14 @@ def get_validated_input(user_input):
 
 
 # to get all data of a year and return
-def get_data_by_year(year_from_user):
+def get_data_by_year(year_value):
     one_year_data = []
 
     for day_data in get_all_data(FOLDER_PATH):
         date_str = day_data[IndexMapper.DATE_STR]
         year_from_data = get_converted_date(date_str).year
 
-        if year_from_data == year_from_user:
+        if year_from_data == year_value:
             one_year_data.append(day_data)
 
     return one_year_data

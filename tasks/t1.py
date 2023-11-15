@@ -3,15 +3,16 @@ from constants import IndexMapper
 
 
 def get_max_temperature_by_year(year_from_user):
-    final_maximum = int(get_data_by_year(year_from_user)[0][IndexMapper.MAX_TEMP])
+    one_day_data = get_data_by_year(year_from_user)[0]
+    maximum = int(one_day_data[IndexMapper.MAX_TEMP])
 
     for day_data in get_data_by_year(year_from_user):
-        maximum_temp = day_data[IndexMapper.MAX_TEMP]
+        may_be_maximum = day_data[IndexMapper.MAX_TEMP]
 
-        if maximum_temp and int(maximum_temp) > final_maximum:
-            final_maximum = int(maximum_temp)
+        if may_be_maximum and int(may_be_maximum) > maximum:
+            maximum = int(may_be_maximum)
 
-    return final_maximum
+    return maximum
 
 
 input_string = input("what year's data you want to see?: (e.g => 2004)")

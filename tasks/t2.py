@@ -3,15 +3,16 @@ from constants import IndexMapper
 
 
 def get_min_temperature_by_year(year_from_user):
-    final_minimum = int(get_data_by_year(year_from_user)[0][IndexMapper.MIN_TEMP])
+    one_day_data = get_data_by_year(year_from_user)[0]
+    minimum = int(one_day_data[IndexMapper.MIN_TEMP])
 
     for day_data in get_data_by_year(year_from_user):
-        minimum_temp = day_data[IndexMapper.MIN_TEMP]
+        may_be_minimum = day_data[IndexMapper.MIN_TEMP]
 
-        if minimum_temp and int(minimum_temp) < final_minimum:
-            final_minimum = int(minimum_temp)
+        if may_be_minimum and int(may_be_minimum) < minimum:
+            minimum = int(may_be_minimum)
 
-    return final_minimum
+    return minimum
 
 
 input_string = input("what year's data you want to see?: (e.g => 2004)")
