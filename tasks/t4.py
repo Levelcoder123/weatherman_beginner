@@ -1,18 +1,14 @@
-from utils.reader import all_years_data
-from constants import IndexMapper
+from utils.reader import get_all_data
+from constants import FOLDER_PATH
 
 
 def get_unique_events():
-    all_unique_events = set()
-
-    for day_data in all_years_data:
-        event = day_data[IndexMapper.EVENTS]
-
-        if event:
-            all_unique_events.add(event)
+    all_unique_events = set([
+        day_data[-2]
+        for day_data in get_all_data(FOLDER_PATH)
+        if day_data[-2]])
 
     return all_unique_events
 
 
-all_events = get_unique_events()
-print(f"Unique events are : {all_events}")
+print(f"Unique events are : {get_unique_events()}")

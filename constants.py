@@ -1,3 +1,6 @@
+FOLDER_PATH = '../weather_files'
+
+
 class IndexMapper:
     DATE_STR = 0
     MAX_TEMP = 1

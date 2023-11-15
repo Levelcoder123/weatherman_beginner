@@ -9,7 +9,7 @@ def path_extractor(path_to_folder):
 
 
 # iterate through the paths and extract all data.
-def gather_all_data(path_to_folder):
+def get_all_data(path_to_folder):
     all_data = []
 
     for path in path_extractor(path_to_folder):
@@ -20,7 +20,3 @@ def gather_all_data(path_to_folder):
                 all_data.append(day_data)
 
     return all_data
-
-
-folder_path = '../weather_files'
-all_years_data = gather_all_data(folder_path)
